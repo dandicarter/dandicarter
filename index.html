@@ -1,87 +1,122 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Tugas Pemrograman Berorientasi Objek - Dandi Carter</title>
+<title>Tugas PBO - Dandi Carter</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-* {
-    box-sizing: border-box;
-}
+* { box-sizing: border-box; scroll-behavior: smooth; }
 
 body {
     font-family: 'Segoe UI', sans-serif;
     margin: 0;
-    background: linear-gradient(135deg, #eef2f7, #d9e4f5);
+    background: linear-gradient(135deg,#eef2f7,#d9e4f5);
+    transition: 0.4s;
+}
+
+/* DARK MODE */
+body.dark {
+    background: #121212;
+    color: #eee;
+}
+
+body.dark .card {
+    background: #1e1e1e;
+}
+
+body.dark header {
+    background: linear-gradient(90deg,#222,#000);
+}
+
+body.dark footer {
+    background: #1a1a1a;
+}
+
+/* NAVBAR */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(10px);
+    padding: 10px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 2000;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 14px;
+}
+
+nav a:hover { text-decoration: underline; }
+
+.toggle-btn {
+    background: #fff;
+    color: #000;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 20px;
+    cursor: pointer;
 }
 
 /* HEADER */
 header {
-    background: linear-gradient(90deg, #007bff, #0056b3);
-    color: white;
+    margin-top: 60px;
     text-align: center;
-    padding: 40px 20px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    padding: 60px 20px;
+    background: linear-gradient(90deg,#007bff,#0056b3);
+    color: white;
 }
 
-header h1 {
-    margin: 0;
-    font-size: 28px;
-}
-
-header p {
-    margin-top: 8px;
-    opacity: 0.9;
-}
+header h1 { margin: 0; }
 
 /* CONTAINER */
 .container {
-    max-width: 950px;
-    margin: 40px auto;
+    max-width: 1000px;
+    margin: 50px auto;
     padding: 0 20px;
 }
 
 /* CARD */
 .card {
     background: white;
-    padding: 25px;
-    margin-bottom: 25px;
+    padding: 30px;
+    margin-bottom: 30px;
     border-radius: 15px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    opacity: 0;
+    transform: translateY(40px);
+    transition: 0.6s ease;
 }
 
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+.card.show {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-.card h2 {
-    margin-top: 0;
-    color: #333;
-}
-
-/* IMAGE */
 .card img {
     width: 100%;
-    border-radius: 12px;
-    margin-top: 10px;
+    border-radius: 10px;
 }
 
 /* BUTTON */
-button {
-    background: linear-gradient(90deg, #007bff, #0056b3);
+button.main-btn {
+    background: linear-gradient(90deg,#007bff,#0056b3);
     color: white;
     border: none;
-    padding: 12px 22px;
+    padding: 12px 25px;
     border-radius: 8px;
     cursor: pointer;
-    font-size: 15px;
-    transition: 0.3s ease;
+    transition: 0.3s;
 }
 
-button:hover {
+button.main-btn:hover {
     transform: scale(1.05);
-    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
 }
 
 /* POPUP */
@@ -97,19 +132,11 @@ button:hover {
     box-shadow: 0 0 40px rgba(0,0,0,0.5);
     padding: 15px;
     z-index: 1000;
-    animation: fadeIn 0.3s ease;
-}
-
-@keyframes fadeIn {
-    from {opacity: 0; transform: scale(0.95);}
-    to {opacity: 1; transform: scale(1);}
 }
 
 .overlay {
     display: none;
     position: fixed;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
     background: rgba(0,0,0,0.6);
@@ -121,55 +148,73 @@ footer {
     text-align: center;
     padding: 20px;
     background: #e9ecef;
-    font-size: 14px;
-    margin-top: 40px;
 }
 
-/* RESPONSIVE */
-@media (max-width: 600px) {
-    header h1 {
-        font-size: 20px;
-    }
+body.dark footer {
+    background: #111;
+}
 
-    .card {
-        padding: 18px;
-    }
+@media(max-width:600px){
+    nav { flex-direction: column; }
 }
 </style>
 </head>
 
 <body>
 
+<!-- NAVBAR -->
+<nav>
+    <div style="color:white;font-weight:bold;">Dandi Carter</div>
+    <div>
+        <a href="#biodata">Biodata</a>
+        <a href="#fibonacci">Fibonacci</a>
+        <a href="#demo">Demo</a>
+        <button class="toggle-btn" onclick="toggleDark()">Dark Mode</button>
+    </div>
+</nav>
+
 <header>
     <h1>Tugas Pemrograman Berorientasi Objek</h1>
-    <p>Dandi Carter | Dart Programming Project</p>
+    <p>Dart Programming Project</p>
 </header>
 
 <div class="container">
 
-    <div class="card">
-        <h2>📌 Biodata</h2>
+    <div class="card" id="biodata">
+        <h2>Biodata</h2>
         <p><b>Nama:</b> Dandi Carter</p>
         <p><b>Mata Kuliah:</b> Pemrograman Berorientasi Objek</p>
-        <p><b>Tugas:</b> Program Biodata & Perhitungan Kuadrat</p>
+        <p><b>Tugas:</b> Biodata, Kuadrat & Fibonacci</p>
     </div>
 
     <div class="card">
-        <h2>🧠 Deskripsi Program</h2>
-        <p>
-            Program ini dibuat menggunakan bahasa Dart untuk menampilkan biodata
-            serta menghitung kuadrat dari sebuah angka.
-        </p>
-    </div>
-
-    <div class="card">
-        <h2>🖥️ Hasil Output Program</h2>
+        <h2>Program Kuadrat</h2>
+        <p>Program menghitung kuadrat angka 5 menggunakan Dart.</p>
         <img src="Screenshot 2026-02-25 234557.png">
     </div>
 
-    <div class="card" style="text-align:center;">
-        <h2>🚀 Demo Program (DartPad)</h2>
-        <button onclick="showPopup()">Jalankan Program Sekarang</button>
+    <div class="card" id="fibonacci">
+        <h2>Program Fibonacci</h2>
+        <p>Program Dart untuk menampilkan deret Fibonacci:</p>
+        <pre>
+void main() {
+  int n = 10;
+  int a = 0, b = 1;
+  print(a);
+  print(b);
+  for(int i=2;i<n;i++){
+    int c = a + b;
+    print(c);
+    a = b;
+    b = c;
+  }
+}
+        </pre>
+    </div>
+
+    <div class="card" id="demo" style="text-align:center;">
+        <h2>Demo Program (DartPad)</h2>
+        <button class="main-btn" onclick="showPopup()">Jalankan Program</button>
     </div>
 
 </div>
@@ -177,29 +222,40 @@ footer {
 <div class="overlay" id="overlay"></div>
 
 <div class="popup" id="popup">
-    <button onclick="hidePopup()">Tutup</button>
-    <iframe 
-      src="https://dartpad.dev/?embed=true&run=true&null_safety=true&code=void%20main()%20%7B%0A%20%20print('Halo,%20nama%20saya%20Dandi%20Carter');%0A%20%20print('Umur%20saya%2020%20tahun');%0A%20%20print('Kuadrat%205%20adalah%2025');%0A%7D"
-      width="100%" 
-      height="90%"
-      style="border:none;">
-    </iframe>
+<button onclick="hidePopup()">Tutup</button>
+<iframe 
+src="https://dartpad.dev/?embed=true&run=true&null_safety=true&code=void%20main()%20%7B%0Aprint('Halo,%20nama%20saya%20Dandi%20Carter');%0Aprint('Kuadrat%205%20adalah%2025');%0A%7D"
+width="100%" height="90%" style="border:none;">
+</iframe>
 </div>
 
 <script>
 function showPopup(){
-    document.getElementById("popup").style.display="block";
-    document.getElementById("overlay").style.display="block";
+    popup.style.display="block";
+    overlay.style.display="block";
+}
+function hidePopup(){
+    popup.style.display="none";
+    overlay.style.display="none";
+}
+function toggleDark(){
+    document.body.classList.toggle("dark");
 }
 
-function hidePopup(){
-    document.getElementById("popup").style.display="none";
-    document.getElementById("overlay").style.display="none";
-}
+/* Scroll Reveal */
+const cards = document.querySelectorAll('.card');
+window.addEventListener('scroll', () => {
+    cards.forEach(card => {
+        const rect = card.getBoundingClientRect();
+        if(rect.top < window.innerHeight - 100){
+            card.classList.add('show');
+        }
+    });
+});
 </script>
 
 <footer>
-    © 2026 Dandi Carter | GitHub Pages Project
+© 2026 Dandi Carter | GitHub Pages Advanced Project
 </footer>
 
 </body>
