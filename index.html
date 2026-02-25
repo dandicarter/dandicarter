@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Tugas Pemograman Berorientasi Objek - Dandi Carter</title>
+    <title>Tugas Pemrograman Berorientasi Objek - Dandi Carter</title>
 
 <style>
+* {
+    box-sizing: border-box;
+}
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', sans-serif;
     margin: 0;
-    background: #f4f6f9;
+    background: linear-gradient(135deg, #eef2f7, #d9e4f5);
 }
 
 /* HEADER */
@@ -15,42 +19,69 @@ header {
     background: linear-gradient(90deg, #007bff, #0056b3);
     color: white;
     text-align: center;
-    padding: 30px 10px;
+    padding: 40px 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
 header h1 {
     margin: 0;
+    font-size: 28px;
+}
+
+header p {
+    margin-top: 8px;
+    opacity: 0.9;
 }
 
 /* CONTAINER */
 .container {
-    max-width: 900px;
-    margin: 30px auto;
-    padding: 0 15px;
+    max-width: 950px;
+    margin: 40px auto;
+    padding: 0 20px;
 }
 
 /* CARD */
 .card {
     background: white;
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+}
+
+.card h2 {
+    margin-top: 0;
+    color: #333;
+}
+
+/* IMAGE */
+.card img {
+    width: 100%;
+    border-radius: 12px;
+    margin-top: 10px;
 }
 
 /* BUTTON */
 button {
-    background: #007bff;
+    background: linear-gradient(90deg, #007bff, #0056b3);
     color: white;
     border: none;
-    padding: 10px 18px;
-    border-radius: 6px;
+    padding: 12px 22px;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 15px;
+    transition: 0.3s ease;
 }
 
 button:hover {
-    background: #0056b3;
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
 }
 
 /* POPUP */
@@ -62,10 +93,16 @@ button:hover {
     width: 90%;
     height: 85%;
     background: white;
-    border-radius: 10px;
-    box-shadow: 0 0 25px rgba(0,0,0,0.4);
-    padding: 10px;
+    border-radius: 15px;
+    box-shadow: 0 0 40px rgba(0,0,0,0.5);
+    padding: 15px;
     z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0; transform: scale(0.95);}
+    to {opacity: 1; transform: scale(1);}
 }
 
 .overlay {
@@ -75,77 +112,80 @@ button:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0,0,0,0.6);
     z-index: 999;
 }
 
 /* FOOTER */
 footer {
     text-align: center;
-    padding: 15px;
+    padding: 20px;
     background: #e9ecef;
     font-size: 14px;
+    margin-top: 40px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 20px;
+    }
+
+    .card {
+        padding: 18px;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
 <header>
     <h1>Tugas Pemrograman Berorientasi Objek</h1>
-    <p>Dandi Carter</p>
+    <p>Dandi Carter | Dart Programming Project</p>
 </header>
 
 <div class="container">
 
-    <!-- BIODATA -->
     <div class="card">
-        <h2>Biodata</h2>
+        <h2>📌 Biodata</h2>
         <p><b>Nama:</b> Dandi Carter</p>
         <p><b>Mata Kuliah:</b> Pemrograman Berorientasi Objek</p>
         <p><b>Tugas:</b> Program Biodata & Perhitungan Kuadrat</p>
     </div>
 
-    <!-- DESKRIPSI PROGRAM -->
     <div class="card">
-        <h2>Deskripsi Program</h2>
+        <h2>🧠 Deskripsi Program</h2>
         <p>
             Program ini dibuat menggunakan bahasa Dart untuk menampilkan biodata
             serta menghitung kuadrat dari sebuah angka.
         </p>
     </div>
 
-    <!-- SCREENSHOT OUTPUT -->
     <div class="card">
-        <h2>Hasil Output Program</h2>
-        <img src="Screenshot 2026-02-25 234557.png" width="100%" style="border-radius:10px;">
+        <h2>🖥️ Hasil Output Program</h2>
+        <img src="Screenshot 2026-02-25 234557.png">
     </div>
 
-    <!-- BUTTON DARTPAD -->
     <div class="card" style="text-align:center;">
-        <h2>Demo Program (DartPad)</h2>
-        <button onclick="showPopup()">Buka DartPad & Jalankan Program</button>
+        <h2>🚀 Demo Program (DartPad)</h2>
+        <button onclick="showPopup()">Jalankan Program Sekarang</button>
     </div>
 
 </div>
 
-<!-- POPUP DARTPAD -->
 <div class="overlay" id="overlay"></div>
 
 <div class="popup" id="popup">
     <button onclick="hidePopup()">Tutup</button>
-
     <iframe 
       src="https://dartpad.dev/?embed=true&run=true&null_safety=true&code=void%20main()%20%7B%0A%20%20print('Halo,%20nama%20saya%20Dandi%20Carter');%0A%20%20print('Umur%20saya%2020%20tahun');%0A%20%20print('Kuadrat%205%20adalah%2025');%0A%7D"
       width="100%" 
       height="90%"
       style="border:none;">
     </iframe>
-
 </div>
 
-<!-- SCRIPT -->
 <script>
 function showPopup(){
     document.getElementById("popup").style.display="block";
@@ -158,7 +198,6 @@ function hidePopup(){
 }
 </script>
 
-<!-- FOOTER -->
 <footer>
     © 2026 Dandi Carter | GitHub Pages Project
 </footer>
